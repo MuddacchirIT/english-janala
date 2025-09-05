@@ -6,7 +6,8 @@ const loadLessons = () => {
 
 const removeActive = () => {
     const lessonButtons = document.querySelectorAll(".lesson-btn")
-    console.log(lessonButtons);
+    // console.log(lessonButtons);
+    lessonButtons.forEach((btn) => btn.classList.remove("active"));
 }
 
 const loadLevelWord = (id) => {
@@ -61,7 +62,7 @@ const displayLesson = (lessons) => {
     for(let lesson of lessons){
     // 3. create element
     const btnDiv = document.createElement("div");
-    btnDiv.innerHTML = `<button id="lesson-btn-${lesson.level_no}" onclick="loadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson - ${lesson.level_no}</button>`;
+    btnDiv.innerHTML = `<button id="lesson-btn-${lesson.level_no}" onclick="loadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary lesson-btn"><i class="fa-solid fa-book-open"></i>Lesson - ${lesson.level_no}</button>`;
     // 4. appent into container
     levelContainer.append(btnDiv);
     }
