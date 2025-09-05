@@ -68,7 +68,7 @@
     </header>
     <section class="flex flex-col-reverse md:flex-row justify-between items-center gap-10 py-5 w-11/12 mx-auto">
         <div class="content flex-1 text-center md:text-left">
-            <h2 class="text-4xl font-bold mb-8"><span class="text-sky-400">English</span>is Easy!!</h2>
+            <h2 class="text-4xl font-bold mb-8"><span class="text-sky-400">English </span>is Easy!!</h2>
             <p class="font-bangla text-xl">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার
                 দক্ষতা বাড়াতে
                 চান, আমাদের
@@ -79,10 +79,13 @@
         </div>
     </section>
     <section>
-        <h2 class="text-4xl text-center font-bold mb-8"><span class="text-sky-400">Let's</span>Learn Vocabulary</h2>
-        <div id="level-container"></div>
+        <h2 class="text-4xl text-center font-bold mb-8"><span class="text-sky-400">Let's </span>Learn Vocabulary</h2>
+        <div id="level-container" class="flex gap-5 flex-wrap justify-center"></div>
     </section>
-    <script src="./script/index.js"></script>
+    <section id="word-container" class="bg-gray-100 p-10 w-11/12 mx-auto my-10 grid grid-cols-3 gap-5">
+        <button onclick="loadLevelWord(3)">Load Words</button>
+    </section>
+    <script src=" ./script/index.js"></script>
 </body>
 
 </html>
