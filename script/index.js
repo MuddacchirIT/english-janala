@@ -1,3 +1,21 @@
+
+const createElement = (arr) => {
+    const htmlElements = arr.map(el => `<span class ="btn">${el}</span>`);
+    return htmlElements.join(" ");
+}
+const manageSpinner = (status) => {
+    if (status == true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    }
+    else {
+        document.getElementById("word-container").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+};
+
+// const { createElement } = require("react");
+
 const loadLessons = () => {
     fetch("https://openapi.programming-hero.com/api/levels/all") //promise of response
     .then((res) => res.json()) //promise of json data
@@ -11,6 +29,7 @@ const removeActive = () => {
 }
 
 const loadLevelWord = (id) => {
+    manageSpinner(true);
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     
     fetch(url)
@@ -33,7 +52,25 @@ const loadWordDetail = async(id) => {
 const displayWordDetails = (word) => {
 console.log(word);
 const detailsBox = document.getElementById("details-container");
-detailsBox.innerHTML = "Hi";
+detailsBox.innerHTML = `<div>
+                    <h2 class="text-2xl font-bold">${word.word}(<i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation})
+                    </h2>
+                </div>
+                <div>
+                    <h2 class="font-bold">Meaning</h2>
+                    <p>${word.meaning}</p>
+                </div>
+                <div>
+                    <h2 class="font-bold">Example</h2>
+                    <p>${word.sentence}</p>
+                </div>
+                <div>
+                    <h2 class="font-bold">Synonym</h2>
+                    <div class="">
+                    ${createElement(word.synonyms)}
+                    </div>
+                    
+                </div>`;
 document.getElementById("word_modal").showModal();
 };
 
@@ -48,6 +85,7 @@ if(words.length == 0){
             <p class="text-xl font-medium text-gray-400">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
             <h2 class="text-4xl font-bold">নেক্সট Lesson এ যান</h2>
         </div>`;
+        manageSpinner(false);
     return;
 }
 
@@ -65,6 +103,7 @@ words.forEach((word) => {
         </div>`;
     wordContainer.append(card);
 });
+manageSpinner(false);
 };
 
 const displayLesson = (lessons) => {
